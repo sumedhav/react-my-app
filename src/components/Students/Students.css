@@ -1,0 +1,8 @@
+.student-name {
+    color: gray;
+    padding: 10px;
+    background: aquamarine;
+    margin: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
