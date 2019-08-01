@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import './Students.css'
-import {StudentDetails} from  '../StudentDetails/StudentDetails'
+import {connect} from "react-redux";
+import {getStudentList} from "../../actions/studentListAction";
+import {fetchStudentDetails} from "../../actions/studentDetailsAction";
 
 
 class Students extends Component {
@@ -15,37 +16,43 @@ class Students extends Component {
     };
   }
 
-  async componentDidMount() {
-    const response = await axios(
-      "https://student-management-api-1u3cd4j7s.now.sh/students"
-    );
-    this.setState({students: response.data})
+  componentDidMount() {
+    this.props.getStudentList();
   };
 
   handleClick(student) {
-    this.setState({details: student})
+    this.props.fetchStudentDetails(student);
+    this.props.history.push('/studentDetails')
   }
 
   render() {
     return (
       <React.Fragment>
-        {this.state.students.length !== 0 &&
+        <h1>Hello World</h1>
+        {this.props.studentList && this.props.studentList.length !== 0 &&
         <div className="students">
-          {this.state.students.map((student, index) =>
+          {this.props.studentList.map((student, index) =>
               <div key={index} className="student-name" onClick={() => this.handleClick(student)}>
                 {student.name}
               </div>)}
         </div>
-        }
-        {
-          Object.keys(this.state.details).length !== 0 &&
-          <StudentDetails name={this.state.details.name}
-                          studentClass={this.state.details.class}
-                          section={this.state.details.section}/>
         }
       </React.Fragment>
     )
   }
 }
 
-export default Students;
+const mapStateToProps = (store)  => {
+  return {
+    studentList: store.StudentList && store.StudentList.studentList,
+    abc: store.StudentList.abc
+  }
+}
+
+const mapDispatchToProps={
+  getStudentList, fetchStudentDetails
+}
+
+const connectMethod = connect(mapStateToProps, mapDispatchToProps);
+
+export default connectMethod(Students);
