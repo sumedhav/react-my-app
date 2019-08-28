@@ -1,0 +1,22 @@
+.accordion {
+    margin: 10px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.accordion .accordion-header {
+    background-color: beige;
+    padding: 10px;
+}
+
+.accordion .accordion-open {
+    transition: 500ms;
+}
+
+.accordion .accordion-close {
+    transition: 1s;
+
+    height: 0;
+    overflow: hidden;
+}
+

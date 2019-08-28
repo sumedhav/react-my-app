@@ -5,6 +5,11 @@ const studentDetails=(previousState={}, action)=>{
                 ...previousState,
                 studentDetails: action.data
             };
+        case "STUDENT_DETAILS_LIST":
+            return {
+                ...previousState,
+                studentDetailsList: action.data
+            }
         default: return  previousState;
     }
 }

@@ -7,6 +7,10 @@
     display: inline-block;
 }
 
+.students>div {
+    display: inline-block;
+}
+
 h1 {
     text-align: center;
 }

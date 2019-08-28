@@ -1,4 +1,4 @@
-const studentList=(previousState={}, action)=>{
+const studentList=(previousState=[], action)=>{
     switch(action.type) {
         case "STUDENTLIST":
             return {
